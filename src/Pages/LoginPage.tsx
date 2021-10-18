@@ -1,16 +1,24 @@
 import { Box, Container } from '@mui/material';
+import React from 'react';
 import { createUseStyles } from 'react-jss';
 import Particles from 'react-particles-js';
+import { baseURL } from '../Consts';
+import { User } from '../Models/User';
 import { theme } from '../theme';
+import axios from "axios";
+import UsersSelect from '../Components/LoginContainer';
 
 const useStyles = createUseStyles({
-    background: {
+    particles: {
         textAlign: 'center',
         height: '100vh'
     },
-    container: {
+    root: {
         maxWidth: '100% !important',
         padding: '0 !important',
+       // background: ֿֿֿֿ"linear-gradient(151deg, ${theme.palette.primary.main} 20%, ${theme.palette.secondary.main} 80%)",
+        background: `linear-gradient(${theme.palette.secondary.main}, ${theme.palette.primary.main})`
+
     },
     connectContainer: {
         position: 'absolute',
@@ -27,8 +35,16 @@ const useStyles = createUseStyles({
 
 function Login() {
     const classes = useStyles()
-    return (<Container className={classes.container}>
-        <Particles className={classes.background} params={{
+    const [users, setUsers] = React.useState<Array<User>>([]);
+
+    React.useEffect(() => {
+        axios.get(baseURL + "/users").then((response) => {
+            setUsers(response.data);
+        });
+    }, []);
+
+    return (<Container className={classes.root}>
+        <Particles className={classes.particles} params={{
             particles: {
                 number: {
                     value: 120
@@ -36,13 +52,13 @@ function Login() {
                 size: {
                     value: 3
                 },
-                color: {
-                    value: theme.palette.primary.main
-                },
-                line_linked: {
-                    color: theme.palette.secondary.main,
-                    opacity: 1
-                }
+                // color: {
+                //     value: "theme.palette.primary.main"
+                // },
+                // line_linked: {
+                //     color: theme.palette.secondary.main,
+                //     opacity: 1
+                // }
 
             },
             "interactivity": {
@@ -55,7 +71,8 @@ function Login() {
             }
         }} />
         <Container fixed className={classes.connectContainer}>
-            <Box sx={{ bgcolor: 'black', height: '30vh', display: 'inline-block', position: 'absolute', overflow: 'auto' }} />
+
+            <UsersSelect users={users}></UsersSelect>
         </Container>
     </Container>
     );

@@ -10,18 +10,27 @@ import { AppBar, ThemeProvider, Toolbar } from '@mui/material';
 import { theme } from './theme';
 import MenuAppBar from './Components/MenuAppBar';
 import MiniDrawer from './Components/SideDrawer';
+import { create } from 'jss';
+import rtl from 'jss-rtl';
+import { StylesProvider, jssPreset } from '@mui/styles';
+
+// Configure JSS
+const jss = create({
+  plugins: [...jssPreset().plugins, rtl()],
+});
 
 function App() {
   return (
-    <ThemeProvider theme={theme}>
-      <React.Fragment>
-        <Router>
-          <Route exact path='/login' component={Login}></Route>
-          <Route exact path='/users' component={MiniDrawer}></Route>
-          <Route exact path='/books' component={MiniDrawer}></Route>
-          <Route exact path='/authors' component={MiniDrawer}></Route>
+    <StylesProvider jss={jss}>
+      <ThemeProvider theme={theme} >
+        <React.Fragment>
+          <Router>
+            <Route exact path='/login' component={Login}></Route>
+            <Route exact path='/users' component={MiniDrawer}></Route>
+            <Route exact path='/books' component={MiniDrawer}></Route>
+            <Route exact path='/authors' component={MiniDrawer}></Route>
 
-          {/* <MiniDrawer />
+            {/* <MiniDrawer />
           <div className="App">
             <ul className="App-header">
               <li>
@@ -44,9 +53,10 @@ function App() {
               <Route exact path='/authors' component={Authors}></Route>
             </Switch>
           </div> */}
-        </Router>
-      </React.Fragment>
-    </ThemeProvider>
+          </Router>
+        </React.Fragment>
+      </ThemeProvider>
+    </StylesProvider>
     //   <ThemeProvider theme={themeOptions}>
     //     <Router>
     //     <MenuAppBar/>

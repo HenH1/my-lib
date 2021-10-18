@@ -19,7 +19,7 @@ import BookIcon from '@mui/icons-material/Book';
 import PersonIcon from '@mui/icons-material/Person';
 import AuthorIcon from '@mui/icons-material/Create';
 import { createUseStyles } from 'react-jss';
-import {theme} from '../theme';
+import { theme } from '../theme';
 
 const drawerWidth = 240;
 
@@ -67,6 +67,7 @@ const AppBar = styled(MuiAppBar, {
     shouldForwardProp: (prop) => prop !== 'open',
 })<AppBarProps>(({ theme, open }) => ({
     zIndex: theme.zIndex.drawer + 1,
+    color: 'white',
     transition: theme.transitions.create(['width', 'margin'], {
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.leavingScreen,
@@ -133,7 +134,7 @@ export default function MiniDrawer() {
                         <MenuIcon />
                     </IconButton>
                     <Typography variant="h6" noWrap component="div">
-                        הסיפריה שלי
+                        הספריה שלי
                     </Typography>
                 </Toolbar>
             </AppBar>
