@@ -6,6 +6,6 @@ export interface Book {
     /** The book's name */
     bookName: string;
     /** Should the name be rendered in bold */
-    authors: Author;
+    author: Author;
 }
 

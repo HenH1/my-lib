@@ -1,12 +1,12 @@
-import { Box, Container } from '@mui/material';
+import { Container } from '@mui/material';
 import React from 'react';
 import { createUseStyles } from 'react-jss';
 import Particles from 'react-particles-js';
 import { baseURL } from '../Consts';
-import { User } from '../Models/User';
+import { User } from '../models/User';
 import { theme } from '../theme';
 import axios from "axios";
-import UsersSelect from '../Components/LoginContainer';
+import UsersSelect from '../components/LoginContainer';
 
 const useStyles = createUseStyles({
     particles: {
@@ -16,13 +16,12 @@ const useStyles = createUseStyles({
     root: {
         maxWidth: '100% !important',
         padding: '0 !important',
-       // background: ֿֿֿֿ"linear-gradient(151deg, ${theme.palette.primary.main} 20%, ${theme.palette.secondary.main} 80%)",
         background: `linear-gradient(${theme.palette.secondary.main}, ${theme.palette.primary.main})`
 
     },
     connectContainer: {
         position: 'absolute',
-        width: '60vh !important',
+        width: '35vw !important',
         height: '40vh',
         top: '50%',
         left: '50%',
@@ -33,7 +32,8 @@ const useStyles = createUseStyles({
     }
 });
 
-function Login() {
+
+const Login = () => {
     const classes = useStyles()
     const [users, setUsers] = React.useState<Array<User>>([]);
 
@@ -43,38 +43,31 @@ function Login() {
         });
     }, []);
 
-    return (<Container className={classes.root}>
-        <Particles className={classes.particles} params={{
-            particles: {
-                number: {
-                    value: 120
-                },
-                size: {
-                    value: 3
-                },
-                // color: {
-                //     value: "theme.palette.primary.main"
-                // },
-                // line_linked: {
-                //     color: theme.palette.secondary.main,
-                //     opacity: 1
-                // }
+    return (
+        <Container className={classes.root}>
+            <Particles className={classes.particles} params={{
+                particles: {
+                    number: {
+                        value: 120
+                    },
+                    size: {
+                        value: 3
+                    },
 
-            },
-            "interactivity": {
-                "events": {
-                    "onhover": {
-                        "enable": true,
-                        "mode": "repulse"
+                },
+                "interactivity": {
+                    "events": {
+                        "onhover": {
+                            "enable": true,
+                            "mode": "repulse"
+                        }
                     }
                 }
-            }
-        }} />
-        <Container fixed className={classes.connectContainer}>
-
-            <UsersSelect users={users}></UsersSelect>
+            }} />
+            <Container fixed className={classes.connectContainer}>
+                <UsersSelect users={users}></UsersSelect>
+            </Container>
         </Container>
-    </Container>
     );
 
 }
