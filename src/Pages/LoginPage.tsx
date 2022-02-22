@@ -6,7 +6,7 @@ import { baseURL } from '../Consts';
 import { User } from '../models/User';
 import { theme } from '../theme';
 import axios from "axios";
-import UsersSelect from '../components/LoginContainer';
+import LoginContainer from '../components/LoginContainer';
 
 const useStyles = createUseStyles({
     particles: {
@@ -16,22 +16,18 @@ const useStyles = createUseStyles({
     root: {
         maxWidth: '100% !important',
         padding: '0 !important',
-        background: `linear-gradient(${theme.palette.secondary.main}, ${theme.palette.primary.main})`
-
+        background: `linear-gradient(${theme.palette.secondary.main}, ${theme.palette.primary.main})`,
     },
-    connectContainer: {
-        position: 'absolute',
-        width: '35vw !important',
-        height: '40vh',
-        top: '50%',
-        left: '50%',
-        zIndex: '100',
-        background: 'white',
-        transform: 'translate(-50%, -50%)',
-        boxShadow: '0px 2px 4px -1px rgb(0 0 0 / 20%), 0px 4px 5px 0px rgb(0 0 0 / 14%), 0px 1px 10px 0px rgb(0 0 0 / 12%)'
-    }
+    // stavDiv: {
+    //     height: '100%',
+    //     display: 'flex !important',
+    //     alignItems: 'center',
+    //     justifyContent: 'center',
+    //     position: 'fixed',
+    //     top: 0,
+    //     maxWidth: '100% !important'
+    // }
 });
-
 
 const Login = () => {
     const classes = useStyles()
@@ -53,7 +49,6 @@ const Login = () => {
                     size: {
                         value: 3
                     },
-
                 },
                 "interactivity": {
                     "events": {
@@ -64,9 +59,9 @@ const Login = () => {
                     }
                 }
             }} />
-            <Container fixed className={classes.connectContainer}>
-                <UsersSelect users={users}></UsersSelect>
-            </Container>
+            {/* <Container className={classes.stavDiv}> */}
+            <LoginContainer users={users}></LoginContainer>
+            {/* </Container> */}
         </Container>
     );
 

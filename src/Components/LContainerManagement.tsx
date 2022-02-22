@@ -85,7 +85,7 @@ const LContainerManagement = (props: LContainerManagementProps) => {
         });
     };
 
-    const [_, forceUpdate] = React.useReducer((x) => x + 1, 0);
+    const forceUpdate = React.useReducer(() => ({}), {})[1] as () => void
 
     const handleFavorite = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>, bookId: number) => {
         event.stopPropagation();
